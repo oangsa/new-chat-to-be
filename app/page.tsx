@@ -1,9 +1,6 @@
+"use client"
 import Image from 'next/image'
-
+import {Content} from '../components/homeContent';
 export default function Home() {
-  return (
-    <>
-      <div>Home</div>
-    </>
-  )
+  return <Content></Content>
 }

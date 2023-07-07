@@ -30,7 +30,6 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
     
     if ( !pass ) return new NextResponse("Failed")
 
-    
     if ( isUserUpdate === 'false' ) await prisma.student.update({where: {studentId: studentId}, data: {name: name, surname: surname, yearClass: yearClass, studentId: studentId, username: username, password: password, image: imageUrl}})
     if ( isUserUpdate === 'true' ) await prisma.student.update({where: {studentId: studentId}, data: {username: username !== "" ? username : oldData.username, password: password !== "" ? password : oldData.password }})
 

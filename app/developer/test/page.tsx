@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 
 function Test() {
 
-    function clickEvt() {
+    function clickEvt() {   
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -19,19 +19,10 @@ function Test() {
             confirmButtonText: 'Yes'
           }).then(async (result) => {
             if (result.isConfirmed) {
-                //62763
-                const res = await axios.post(`/api/user/edit`, {
-                    name: "กันตินันท์", 
-                    surname: "ศิริวรรณรัตน", 
-                    yearClass: 1, 
-                    studentId: 62763, 
-                    Class: 1, 
-                    username: "rs62763@rajsima.ac.th", 
-                    password: 62763, 
-                    imageUrl: "", 
-                    isUserUpdate: "false",
-                    updateUser: 62763,
-                })
+
+                const res = await fetch("/api/usetage/getusetagebyyear")
+
+                console.log(res)
 
                 Swal.fire(
                     {

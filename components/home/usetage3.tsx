@@ -1,7 +1,7 @@
 import {Card, Text} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
-import {Box} from './styles/box';
-import {Flex} from './styles/flex';
+import {Box} from '../styles/box';
+import {Flex} from '../styles/flex';
 
 export const CardBalance3 = () => {
     const [data, setData] = useState({

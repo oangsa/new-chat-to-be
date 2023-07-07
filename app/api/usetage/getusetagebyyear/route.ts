@@ -21,6 +21,6 @@ export async function GET() {
         data.month.push(month)
         data.total.push(total)
     }
-    console.log(data)
+    // console.log(data)
     return NextResponse.json(data)
 }

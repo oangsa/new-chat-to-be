@@ -6,7 +6,8 @@ import { EditIcon } from "@/components/icons/table/edit";
 import { DeleteIcon } from "@/components/icons/table/delete";
 import { editIsPressed, deleteIsPressed } from "@/app/libs/manageUser";
 import Swal from "sweetalert2";
-import EditUser from "@/components/editUser";
+import EditUser from "@/components/users/editUser";
+import AddUser from "@/components/users/addUser";
 
 
 export default function AdminList() {
@@ -66,7 +67,7 @@ export default function AdminList() {
                             <h1 className="text-xl sm:text-2xl text-gray-900 dark:text-white">Student Lists</h1>
                         </div>
                         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
-                            <Button>+ เพิ่ม</Button>
+                            <AddUser></AddUser>
                         </div>
                     </Card.Header>
                     <Card.Divider/>
@@ -109,7 +110,7 @@ export default function AdminList() {
                             )
                         })}
                         </Table.Body>
-                        <Table.Pagination shadow noMargin align="center" rowsPerPage={10} onPageChange={(page) => console.log({ page })} />
+                        <Table.Pagination shadow noMargin align="center" rowsPerPage={15} onPageChange={(page) => console.log({ page })} />
                         </Table>
                     </Card.Body>
                 </Card>
@@ -117,15 +118,3 @@ export default function AdminList() {
         </>
     )
 }
-
-// {data.map((item: any) => {
-//     return (
-//         <Table.Row key={item.studentId}>
-//             <Table.Cell>{item.name}</Table.Cell>
-//             <Table.Cell>{item.surname}</Table.Cell>
-//             <Table.Cell>{item.yearClass}/{item.class}</Table.Cell>
-//             <Table.Cell>{item.total}</Table.Cell>
-//             <Table.Cell>Action</Table.Cell>
-//         </Table.Row>
-//     )
-// })}

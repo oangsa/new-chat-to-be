@@ -1,7 +1,7 @@
 import {Card, Text, useTheme} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
-import {Box} from './styles/box';
-import {Flex} from './styles/flex';
+import {Box} from '../styles/box';
+import {Flex} from '../styles/flex';
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { IconArrowDownRight, IconCurrencyDollar } from '@tabler/icons-react';

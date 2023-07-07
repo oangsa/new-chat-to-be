@@ -1,12 +1,13 @@
 import React from 'react';
 import {Text, Link} from '@nextui-org/react';
-import {Box} from './styles/box';
+import {Box} from '../styles/box';
 import dynamic from 'next/dynamic';
-import {Flex} from './styles/flex';
+import {Flex} from '../styles/flex';
 import NextLink from 'next/link';
 import {CardBalance1} from './usetage1';
 import {CardBalance2} from './usetage2';
 import {CardBalance3} from './usetage3';
+import {RecentUse} from './recentusetage';
 // import {CardAgents} from './card-agents';
 // import {CardTransactions} from './card-transactions';
 
@@ -40,6 +41,15 @@ export const Content = () => (
                </Box>
             </Box>
          </Flex>
+         <Box css={{ 'px': '$12', 'mt': '$8', 'height': 'fit-content', '@xsMax': {px: '$10'}, 'gap': '$6', 'overflow': 'hidden', }} >
+            <Text h3
+               css={{ 'textAlign': 'center', '@lg': { textAlign: 'inherit', }, }} >
+               {"การใช้งานล่าสุด"}
+            </Text>
+            <Flex direction={'column'} justify={'center'} css={{ 'gap': '$8', 'flexDirection': 'row', 'flexWrap': 'wrap', '@sm': { flexWrap: 'nowrap', }, '@lg': { flexWrap: 'nowrap', flexDirection: 'column', }, }} >
+               <RecentUse />
+            </Flex>
+         </Box>
       </Flex>
    </Box>
 );

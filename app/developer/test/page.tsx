@@ -20,7 +20,7 @@ function Test() {
           }).then(async (result) => {
             if (result.isConfirmed) {
 
-                const res = await fetch("/api/usetage/getusetagebyyear")
+                const res = await fetch("/api/utilities/fetchFacebook")
 
                 console.log(res)
 

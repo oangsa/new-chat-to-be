@@ -1,47 +1,54 @@
-import {Avatar, Dropdown, Navbar, Text} from '@nextui-org/react';
+import {Avatar, Dropdown, Link, Navbar, Text} from '@nextui-org/react';
 import React from 'react';
 import {DarkModeSwitch} from './darkmodeswitch';
+import { usePathname, useRouter } from 'next/navigation';
+import logout from '@/libs/logoutHandler';
 
-export const UserDropdown = () => {
+interface props {
+   image: string,
+   name: string
+}
+
+export const UserDropdown = ({image, name}: props) => {
+   const router = useRouter()
+   const pathname = usePathname()
+   var url = image
+   
+   if ( image === 'url' || image === '' ) url = 'https://i.pravatar.cc/150?u=a042581f4e29026704d'
+
+   async function logoutClicked() {
+      logout()
+      router.refresh()
+      return
+   }
+
+
    return (
       <Dropdown placement="bottom-right">
          <Navbar.Item>
             <Dropdown.Trigger>
-               <Avatar
-                  bordered
-                  as="button"
-                  color="secondary"
-                  size="md"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-               />
+               <Avatar bordered as="button" color="secondary" size="md" src={url} />
             </Dropdown.Trigger>
          </Navbar.Item>
-         <Dropdown.Menu
-            aria-label="User menu actions"
-            onAction={(actionKey) => console.log({actionKey})}
-         >
+         <Dropdown.Menu aria-label="User menu actions" onAction={(actionKey) => {
+            if (actionKey === 'logout') return logoutClicked()
+            console.log(actionKey)
+         }} >
             <Dropdown.Item key="profile" css={{height: '$18'}}>
                <Text b color="inherit" css={{d: 'flex'}}>
-                  Signed in as
+                  ลงชื่อเข้าใช้เป็น
                </Text>
                <Text b color="inherit" css={{d: 'flex'}}>
-                  zoey@example.com
+                  {name}
                </Text>
             </Dropdown.Item>
             <Dropdown.Item key="settings" withDivider>
-               My Settings
+               <Link color={'text'} href='/settings'>
+                  ตั้งค่า
+               </Link>
             </Dropdown.Item>
-            <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
-            <Dropdown.Item key="analytics" withDivider>
-               Analytics
-            </Dropdown.Item>
-            <Dropdown.Item key="system">System</Dropdown.Item>
-            <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
-            <Dropdown.Item key="help_and_feedback" withDivider>
-               Help & Feedback
-            </Dropdown.Item>
-            <Dropdown.Item key="logout" withDivider color="error">
-               Log Out
+            <Dropdown.Item  key="logout" withDivider color="error">
+               ลงชื่อออก
             </Dropdown.Item>
             <Dropdown.Item key="switch" withDivider>
                <DarkModeSwitch />

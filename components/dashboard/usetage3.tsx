@@ -2,7 +2,8 @@ import {Card, Text} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 export const CardBalance3 = () => {
     const [data, setData] = useState({
         curTotal: 0,
@@ -13,11 +14,13 @@ export const CardBalance3 = () => {
         oldMonth: 0,
     })
 
+    const [isDoneLoading, setIsDoneLoading] = useState<boolean>(false) 
+
     const getD = async () => {
         const res = await fetch("/api/usetage/getUsetage")
         const data = await res.json()
-        setData(data)
-        console.log(data)
+        await setData(data)
+        setIsDoneLoading(true)
     }
 
     useEffect(() => {
@@ -36,7 +39,7 @@ export const CardBalance3 = () => {
                 </Flex>
                 <Flex css={{gap: '$6', py: '$4'}} align={'center'}>
                     <Text span size={'$xl'} css={{color: 'white'}} weight={'semibold'} >
-                        {data.curTotal} ครั้ง
+                        {isDoneLoading === false ? "Loading..." : `${data.curTotal} ครั้ง`}
                     </Text>
                 </Flex>
             </Card.Body>

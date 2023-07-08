@@ -2,11 +2,13 @@
 
 import { Button } from '@nextui-org/react'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import Swal from 'sweetalert2'
 
 
 function Test() {
+    const router = useRouter()
 
     function clickEvt() {   
         Swal.fire({
@@ -20,9 +22,7 @@ function Test() {
           }).then(async (result) => {
             if (result.isConfirmed) {
 
-                const res = await fetch("/api/utilities/fetchFacebook")
-
-                console.log(res)
+                router.refresh()
 
                 Swal.fire(
                     {

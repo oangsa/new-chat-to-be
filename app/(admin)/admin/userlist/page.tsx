@@ -8,6 +8,7 @@ import { editIsPressed, deleteIsPressed } from "@/libs/manageUser";
 import Swal from "sweetalert2";
 import EditUser from "@/components/users/editUser";
 import AddUser from "@/components/users/addUser";
+import { getCookie } from "cookies-next";
 
 
 export default function AdminList() {
@@ -20,6 +21,11 @@ export default function AdminList() {
         await setData(d)
     }
 
+    useEffect(() => {
+        const cookie: any = getCookie('user-token')
+        console.log(cookie)
+     })
+
     async function delBtn(sid: number) {
         Swal.fire({
             title: 'Are you sure?',
@@ -31,8 +37,6 @@ export default function AdminList() {
             confirmButtonText: 'Yes'
           }).then(async (result) => {
             if (result.isConfirmed) {
-                
-                // await deleteIsPressed(sid)   
 
                 const Toast = Swal.mixin({
                     toast: true,

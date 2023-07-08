@@ -1,3 +1,4 @@
+
 import {Button, Input, Link, Navbar, Text} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import {Box} from '../styles/box';
@@ -6,6 +7,10 @@ import {UserDropdown} from './user-dropdown';
 import { getCookie, deleteCookie  } from "cookies-next"
 import jwtDecode from 'jwt-decode';
 import LoginModal from './loginModal';
+import checkCookie from '@/libs/checkCookie';
+import Registeration from '../home/registeration';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface Props {
    children: React.ReactNode;
@@ -14,27 +19,29 @@ interface Props {
 export const NavbarWrapper = ({children}: Props) => {
 
    const [isAdmin, setIsAdmin] = useState<boolean>(false)
+   const [isDoneLoading, setIsDoneLoading] = useState<boolean>(false)
    const [hasCookie, setHasCookie] = useState<boolean>(false)
+   const [data, setData] = useState<any>()
+
+   async function a (){
+      const token: any = await checkCookie()
+      if (token === undefined || token === null) {
+         await setIsAdmin(false)
+         await setHasCookie(false)
+      }
+      else {
+         const a = await fetch(`/api/user/getuserbysid?sid=${token.studentId.toString()}`)
+         await setData((await a.json()))
+         await setIsAdmin(token?.isAdmin === undefined ? false : token.isAdmin)
+         await setHasCookie(token === undefined ? false : true )
+      }
+      setIsDoneLoading(true)
+   }
 
    useEffect(() => {
-      const cookie: any = getCookie("user-token")
-      const token: any = cookie === undefined ? undefined : jwtDecode(cookie, {header: true}) 
-      setIsAdmin(token?.isAdmin === undefined ? false : token.isAdmin)
-      setHasCookie(cookie === undefined ? false : true )
-  }, [])
+      a()
+   })
 
-   const collapseItems = [
-      'Profile',
-      'Dashboard',
-      'Activity',
-      'Analytics',
-      'System',
-      'Deployments',
-      'My Settings',
-      'Team Settings',
-      'Help & Feedback',
-      'Log Out',
-   ];
    return (
       <Box
          css={{
@@ -88,38 +95,14 @@ export const NavbarWrapper = ({children}: Props) => {
             : 
                <Navbar.Content>     
                   <Navbar.Content>
-                     <Button color={"gradient"}>ลงทะเบียน</Button>
+                     <Registeration name={data.name} surname={data.surname} month={data.oldMonth}/>
                   </Navbar.Content>
                   <Navbar.Content>
-                     <UserDropdown />
+                     <UserDropdown name={`${data.name} ${data.surname}`} image={data.image} />
                   </Navbar.Content>
                </Navbar.Content>
           
             }
-            
-            <Navbar.Collapse>
-               {collapseItems.map((item, index) => (
-                  <Navbar.CollapseItem
-                     key={item}
-                     activeColor="secondary"
-                     css={{
-                        color:
-                           index === collapseItems.length - 1 ? '$error' : '',
-                     }}
-                     isActive={index === 2}
-                  >
-                     <Link
-                        color="inherit"
-                        css={{
-                           minWidth: '100%',
-                        }}
-                        href="#"
-                     >
-                        {item}
-                     </Link>
-                  </Navbar.CollapseItem>
-               ))}
-            </Navbar.Collapse>
          </Navbar>
          {children}
       </Box>

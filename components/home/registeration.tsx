@@ -5,6 +5,7 @@ import { DeleteIcon } from '../icons/table/delete';
 import { EditIcon } from '../icons/table/edit';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { stringify } from 'querystring';
 
 interface props {
     studentId: number
@@ -18,13 +19,18 @@ interface leaveModal {
 
 interface leaveFrom {
     other: string
+    reason: string
 }
 
 function Registeration({name, surname, month}:leaveModal) {
     const [visible, setVisible] = useState(false);
     const [data, setData] = useState<leaveFrom>({
+        reason: "",
         other: ""
     })
+
+    const reason = data.reason === "อื่นๆ" ? data.other : data.reason
+       
     const handler = () => setVisible(true);
     
     const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +43,12 @@ function Registeration({name, surname, month}:leaveModal) {
       setVisible(false);
       console.log("closed");
     };
+
+    const handleSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target
+        console.log(name, value)
+        setData((prev) => ({...prev, [name]: value}))
+    }
 
     async function submit() {
         setVisible(false);
@@ -62,13 +74,24 @@ function Registeration({name, surname, month}:leaveModal) {
                     timerProgressBar: true
                 })
                 
-                if (data.other === "") return await Toast.fire({ icon: 'error', title: 'Faild!'})
+                console.log(reason)
+
+                if (reason === "") return await Toast.fire({ icon: 'error', title: 'Faild!'})
                 //62763
 
+                const res = await axios.post('/api/senddatahandler/send', {
+                    name: name,
+                    surname: surname,
+                    oldMonth: month,
+                    other: reason
+                })
+
+                console.log(await res.status)
 
                 // if (res.data !== "Success") return await Toast.fire({ icon: 'error', title: 'Faild!'})
                 setData({
-                    other: ""
+                    other: "",
+                    reason: ""
                 })
                 return await Toast.fire({ icon: 'success', title: 'Done!' })
             }
@@ -78,13 +101,13 @@ function Registeration({name, surname, month}:leaveModal) {
     return (
         <div>
             <IconButton>
-                <Button onClick={handler}>+ เพิ่ม</Button>
+                <Button color={'gradient'} onClick={handler}>ลงทะเบียน</Button>
             </IconButton>
             <Modal closeButton aria-labelledby="modal-title" open={visible} onClose={closeHandler} >
                 <Modal.Body>
                     <div className="flex justify-between items-center mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                            📝 เพิ่มนักเรียน
+                            📝 ลงทะเบียน
                         </h3>
                     </div>                
                     <Container gap={0}>
@@ -99,7 +122,25 @@ function Registeration({name, surname, month}:leaveModal) {
                         <Spacer y={1}/>
                         <Row gap={0.3}>
                             <Col>
-                                <Input onInput={inputHandler} value={name} label='รหัสประจำตัวนักเรียน' name="studentId" fullWidth placeholder="12345" />
+                                <div className="grid gap-4 mb-4 sm:grid-cols-1">
+                                    <label htmlFor="reason" className="block text-sm font-medium text-gray-900 dark:text-white">ระบุเหตุผล</label>
+                                    <select onChange={handleSelect} value={data.reason} name="reason" id="reason" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        <option disabled>เลือกเหตุผล</option>
+                                        <option value="ปรับทุกข์">ปรับทุกข์</option>
+                                        <option value="สร้างสุข">สร้างสุข</option>
+                                        <option value="แก้ไขปัญหา">แก้ไขปัญหา</option>
+                                        <option value="พัฒนา EQ">พัฒนา EQ</option>
+                                        <option value="อื่นๆ">อื่นๆ</option>
+                                    </select> 
+                                </div>
+                                <div className="grid gap-4 mb-4 sm:grid-cols-1">
+                                    { data.reason !== "อื่นๆ" ? "" : 
+                                        <div>
+                                            <label htmlFor="other" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">โปรดระบุ</label>
+                                            <input value={data.other} onChange={inputHandler} type="text" name="other" id="other" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="ติดเกม..." required />
+                                        </div>
+                                    }
+                                </div>
                             </Col>
                         </Row>
                     </Container>

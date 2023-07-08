@@ -6,10 +6,11 @@ import loginHandler from '@/libs/loginHandler'
 import { Button, Card, Col, Container, FormElement, Input, Modal, Row, Spacer, Text } from '@nextui-org/react';
 import { IconButton } from '@/app/(admin)/admin/userlist/table.styled'
 import Swal from 'sweetalert2'
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 
 
 export default function LOginModal() {
-  const router = useRouter()
+  const router: AppRouterInstance = useRouter()
   const [data, setData] = useState({
       username: '',
       password: ''
@@ -39,7 +40,9 @@ export default function LOginModal() {
         password: ''
     })
 
-    return Toast.fire({ icon: 'success', title: 'Authenticated' })
+    Toast.fire({ icon: 'success', title: 'Authenticated' })
+
+    return setTimeout(() => router.refresh(), 3050)
 
   }
 

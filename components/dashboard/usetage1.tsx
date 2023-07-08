@@ -57,10 +57,13 @@ export const CardBalance1 = () => {
     oldMonth: 0,
     })
 
+    const [isDoneLoading, setIsDoneLoading] = useState<boolean>(false) 
+
     const getD = async () => {
         const res = await fetch("/api/usetage/getUsetage")
         const data = await res.json()
-        setData(data)
+        await setData(data)
+        setIsDoneLoading(true)
     }
 
     useEffect(() => {
@@ -79,27 +82,35 @@ export const CardBalance1 = () => {
                         </Text>
                     </Flex>
                 </Flex>
-                <Flex css={{gap: '$6', py: '$4'}} align={'center'}>
-                    <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="60px" />
-                </Flex>
-                <Flex css={{gap: '$12'}} align={'center'}>
+                { isDoneLoading === false? 
                     <Text span css={{color: 'white'}} size={'$lg'}>
-                        เข้าใช้งาน {data.curDay} ครั้ง
-                    </Text>
-                    <Text span css={{color: '$green600'}} size={'$lg'}>
-                        { data.curDay > data.oldDay ?
-                            <div className='flex items-center'>
-                                <IconArrowUpLeft width={30} color="#39B69A" className='mr-2'/>
-                                {(((data.curDay - data.oldDay) / more ) * 100).toFixed(2)}%
-                            </div> 
-                            :
-                            <div className='flex items-center text-red-600'>
-                                <IconArrowDownRight width={30} color="#FA896B" className='mr-2'/>
-                                {(((data.oldDay - data.curDay) / less) * 100).toFixed(2)}%
-                            </div>
-                        } 
-                    </Text>
-                </Flex>
+                        loading...
+                    </Text> 
+                    :
+                    <>
+                        <Flex css={{gap: '$6', py: '$4'}} align={'center'}>
+                            <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="60px" />
+                        </Flex>
+                        <Flex css={{gap: '$12'}} align={'center'}>
+                            <Text span css={{color: 'white'}} size={'$lg'}>
+                                เข้าใช้งาน {data.curDay} ครั้ง
+                            </Text>
+                            <Text span css={{color: '$green600'}} size={'$lg'}>
+                                { data.curDay > data.oldDay ?
+                                    <div className='flex items-center'>
+                                        <IconArrowUpLeft width={30} color="#39B69A" className='mr-2'/>
+                                        {(((data.curDay - data.oldDay) / more ) * 100).toFixed(2)}%
+                                    </div> 
+                                    :
+                                    <div className='flex items-center text-red-600'>
+                                        <IconArrowDownRight width={30} color="#FA896B" className='mr-2'/>
+                                        {(((data.oldDay - data.curDay) / less) * 100).toFixed(2)}%
+                                    </div>
+                                } 
+                            </Text>
+                        </Flex>
+                    </>
+                    }
             </Card.Body>
         </Card>
     );

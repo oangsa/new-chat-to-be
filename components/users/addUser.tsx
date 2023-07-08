@@ -115,9 +115,7 @@ function AddUser() {
 
     return (
         <div>
-            <IconButton>
-                <Button onClick={handler}>+ เพิ่ม</Button>
-            </IconButton>
+            <Button onClick={handler}>+ เพิ่ม</Button>
             <Modal closeButton aria-labelledby="modal-title" open={visible} onClose={closeHandler} >
                 <Modal.Body>
                     <div className="flex justify-between items-center mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">

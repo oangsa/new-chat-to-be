@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { hasCookie } from "cookies-next"
-import loginHandler from '@/app/libs/loginHandler'
+import loginHandler from '@/libs/loginHandler'
 import { Button, Card, Container, FormElement, Input, Row, Spacer, Text } from '@nextui-org/react';
 
 

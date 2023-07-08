@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { IconButton } from "./table.styled";
 import { EditIcon } from "@/components/icons/table/edit";
 import { DeleteIcon } from "@/components/icons/table/delete";
-import { editIsPressed, deleteIsPressed } from "@/app/libs/manageUser";
+import { editIsPressed, deleteIsPressed } from "@/libs/manageUser";
 import Swal from "sweetalert2";
 import EditUser from "@/components/users/editUser";
 import AddUser from "@/components/users/addUser";
@@ -64,7 +64,7 @@ export default function AdminList() {
                 <Card>
                     <Card.Header>
                         <div className="item-center justify justify-center">
-                            <h1 className="text-xl sm:text-2xl text-gray-900 dark:text-white">Student Lists</h1>
+                            <h1 className="mt-2 ml-1 text-xl sm:text-2xl text-gray-900 dark:text-white">รายชื่อนักเรียน</h1>
                         </div>
                         <div className="flex items-center space-x-2 sm:space-x-3 ml-auto">
                             <AddUser></AddUser>

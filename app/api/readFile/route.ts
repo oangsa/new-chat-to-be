@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import path from 'path';
 import fs from 'fs';
 import { NextResponse } from 'next/server';
-import prisma from '../../libs/prismadb'
+import prisma from '../../../libs/prismadb'
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
     

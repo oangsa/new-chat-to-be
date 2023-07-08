@@ -1,5 +1,5 @@
-import prisma from "../../../libs/prismadb"
-import connectMongo from "../../../libs/connectMongo"
+import prisma from "../../../../libs/prismadb"
+import connectMongo from "../../../../libs/connectMongo"
 import Note from "@/model/student"
 import Usetage from "@/model/usetage"
 

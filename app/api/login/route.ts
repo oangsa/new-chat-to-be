@@ -2,14 +2,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { SignJWT } from 'jose'
 import { nanoid } from 'nanoid'
-import { getJwtSecretKey } from '../../libs/auth'
+import { getJwtSecretKey } from '../../../libs/auth'
 import cookie from 'cookie'
-import prisma from '../../libs/prismadb'
+import prisma from '../../../libs/prismadb'
 import { NextResponse } from 'next/server'
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-    const username: string = req.body.username
-    const password: string = req.body.password
+export async function POST(req: Request) {
+    const res = await req.json()
+    const username: string = res.data.username
+    const password: string = res.data.password
 
     var isAdmin = false
 
@@ -42,7 +43,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
         //     sameSite: "strict"
         // }))
 
-        // return res.status(200).send(result)
+        return new NextResponse("Success")
 
     } catch (err) {
         return new NextResponse("Unknown Error")

@@ -2,9 +2,25 @@
 import './globals.css'
 import { Kanit } from 'next/font/google'
 import React from 'react'
-import { NextUIProvider } from '@nextui-org/react';
+import {createTheme, NextUIProvider} from '@nextui-org/react';
+import {ThemeProvider as NextThemesProvider} from 'next-themes';
+import {Layout} from "../components/layout/layout"
 
 const kanit = Kanit({ subsets: ['latin', 'thai'], weight: '400' })
+
+const lightTheme = createTheme({
+  type: 'light',
+  theme: {
+     colors: {},
+  },
+});
+
+const darkTheme = createTheme({
+  type: 'dark',
+  theme: {
+     colors: {},
+  },
+});
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,9 +34,16 @@ export default function RootLayout({
 }) {
   return (
       <html lang="en">
-        <NextUIProvider>
-          <body className={kanit.className}>{children}</body>
-        </NextUIProvider>
+        <NextThemesProvider defaultTheme="system" attribute="class" value={{ light: lightTheme.className, dark: darkTheme.className, }} >
+          <NextUIProvider>
+            <body className={kanit.className}>
+              <Layout>
+                {children}
+              </Layout>
+            </body>
+          </NextUIProvider>
+      </NextThemesProvider>
+        
       </html>
     
   )

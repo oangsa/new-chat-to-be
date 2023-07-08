@@ -85,7 +85,7 @@ export const CardBalance2 = () => {
                     <Text span css={{color: 'black'}} size={'$lg'}>
                         เข้าใช้งาน {data.curMonth} ครั้ง
                     </Text>
-                    <Text span css={{color: '$green600'}} size={'$lg'}>
+                    <Text span css={{color: '$green600'}} size={'$md'}>
                         { data.curMonth > data.oldMonth ?
                             <div className='flex items-center'>
                                 <IconArrowUpLeft width={30} color="#39B69A" className='mr-2'/>

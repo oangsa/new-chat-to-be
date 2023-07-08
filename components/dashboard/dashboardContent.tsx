@@ -14,7 +14,7 @@ import {RecentUse} from './recentusetage';
 const Chart = dynamic(
    () => import('./chart').then((mod) => mod.Steam),
    {
-      ssr: true,
+      ssr: false,
    }
 );
 

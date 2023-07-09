@@ -1,4 +1,4 @@
-interface studentData {
+export interface studentData {
     id: string,
     name: string,
     surname: string,

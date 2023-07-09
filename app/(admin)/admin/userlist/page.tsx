@@ -1,10 +1,8 @@
 "use client"
-import { Button, Card, Col, Container, Grid, Row, Table, Tooltip } from "@nextui-org/react";
+import { Card, Col, Container, Row, Table, Tooltip } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { IconButton } from "./table.styled";
-import { EditIcon } from "@/components/icons/table/edit";
 import { DeleteIcon } from "@/components/icons/table/delete";
-import { editIsPressed, deleteIsPressed } from "@/libs/manageUser";
 import Swal from "sweetalert2";
 import EditUser from "@/components/users/editUser";
 import AddUser from "@/components/users/addUser";

@@ -16,9 +16,9 @@ import checkCookie from '@/libs/checkCookie';
 import ChangeLog from './changeLog';
 
 export default function SidebarWrapper() {
-   const router = useRouter();
-   const pathname = usePathname();
-   const {collapsed, setCollapsed} = useSidebarContext();
+   const router = useRouter()
+   const pathname = usePathname()
+   const {collapsed, setCollapsed} = useSidebarContext()
    const [isAdmin, setIsAdmin] = useState<boolean>(false)
 
    function checkIsDev() {

@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react'
 import { Modal, Button, Input, Row, Container, Col, Spacer } from "@nextui-org/react";
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { studentData } from '@/type';
 
 function AddUser() {
     const [visible, setVisible] = useState(false);

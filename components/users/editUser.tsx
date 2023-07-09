@@ -4,6 +4,7 @@ import { IconButton } from '@/app/(admin)/admin/userlist/table.styled';
 import { EditIcon } from '../icons/table/edit';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { studentData } from '@/type';
 
 interface props {
     studentId: number

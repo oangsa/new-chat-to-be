@@ -2,6 +2,7 @@
 
 import { Flex } from '@/components/styles/flex'
 import getDataByCookie from '@/libs/getDataByCookie';
+import { studentData } from '@/type';
 import { Button, Card, Container, Input, Loading, Spacer, Text } from '@nextui-org/react'
 import axios from 'axios';
 import React, { ChangeEvent, useEffect, useState } from 'react'

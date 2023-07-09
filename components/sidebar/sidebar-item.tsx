@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const SidebarItem = ({icon, title, isActive, href = '', click}: Props) => {
-   const {collapsed, setCollapsed} = useSidebarContext();
+   const {setCollapsed} = useSidebarContext();
 
    const handleClick = () => {
       if (window.innerWidth < 768) {

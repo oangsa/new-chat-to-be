@@ -1,9 +1,8 @@
 import React from 'react';
-import {Text, Link} from '@nextui-org/react';
+import {Text} from '@nextui-org/react';
 import {Box} from '../styles/box';
 import dynamic from 'next/dynamic';
 import {Flex} from '../styles/flex';
-import NextLink from 'next/link';
 import {CardBalance1} from './usetage1';
 import {CardBalance2} from './usetage2';
 import {CardBalance3} from './usetage3';

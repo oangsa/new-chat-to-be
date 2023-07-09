@@ -1,15 +1,12 @@
 "use client"
-import {Button, Input, Link, Navbar, Text} from '@nextui-org/react';
+import {Navbar} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import {Box} from '../styles/box';
 import {BurguerButton} from './burguer-button';
 import {UserDropdown} from './user-dropdown';
-import { getCookie, deleteCookie  } from "cookies-next"
-import jwtDecode from 'jwt-decode';
 import LoginModal from './loginModal';
 import checkCookie from '@/libs/checkCookie';
 import Registeration from '../home/registeration';
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 interface Props {

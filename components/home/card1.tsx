@@ -1,9 +1,6 @@
-import {Card, Spacer, Text, useTheme} from '@nextui-org/react';
+import {Card, Text} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
-import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
-import dynamic from "next/dynamic";
-import getDataByCookie from '@/libs/getDataByCookie';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
 import { useRouter } from 'next/navigation';
 import { CookieValueTypes, getCookie } from 'cookies-next';

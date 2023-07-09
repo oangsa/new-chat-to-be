@@ -1,7 +1,4 @@
-import prisma from "../../../../libs/prismadb"
 import connectMongo from "../../../../libs/connectMongo"
-import Note from "@/model/student"
-import Usetage from "@/model/usetage"
 
 export async function GET() {
     var sum = 0

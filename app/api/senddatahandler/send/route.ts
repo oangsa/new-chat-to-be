@@ -1,4 +1,3 @@
-import checkCookie from "@/libs/checkCookie";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from '../../../../libs/prismadb'
 import checkServerCookie from "@/libs/checkServerCookie";

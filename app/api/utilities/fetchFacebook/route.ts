@@ -1,5 +1,3 @@
-import rp from "request-promise-native"
-import cheerio from "cheerio"
 import { NextResponse } from "next/server";
 
 export async function GET() {

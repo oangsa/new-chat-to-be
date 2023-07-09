@@ -1,17 +1,13 @@
 import {Card, Text, useTheme} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
-import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import { IconArrowDownRight, IconCurrencyDollar } from '@tabler/icons-react';
+import { IconArrowDownRight } from '@tabler/icons-react';
 import { IconArrowUpLeft } from '@tabler/icons-react';
 
 export const CardBalance1 = () => {
-    const {theme} = useTheme();
-    const primary = "#0072F5";
-    const secondary = "#7828C8";
-    const primarylight = '#ecf2ff';
+    const secondary = "#7828C8";;
     const secondarylight = '#f5fcff';
     const optionscolumnchart: any = {
     chart: {

@@ -1,19 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Box} from '../styles/box';
 import {Sidebar} from './sidebar.styles';
-import {Avatar, Tooltip} from '@nextui-org/react';
 import {Flex} from '../styles/flex';
 import {HomeIcon} from '../icons/sidebar/home-icon';
 import {DashboardIcon} from '../icons/sidebar/dashboard-icon';
 import {AccountsIcon} from '../icons/sidebar/accounts-icon';
-import {DevIcon} from '../icons/sidebar/dev-icon';
-import {ViewIcon} from '../icons/sidebar/view-icon';
 import {SettingsIcon} from '../icons/sidebar/settings-icon';
 import {SidebarItem} from './sidebar-item';
 import {SidebarMenu} from './sidebar-menu';
-import {FilterIcon} from '../icons/sidebar/filter-icon';
-import {useSidebarContext} from '../layout/layout-context';
-import {ChangeLogIcon} from '../icons/sidebar/changelog-icon';
+import {useSidebarContext} from '@/components/layout/layout-context';
 import {useRouter, usePathname} from 'next/navigation';
 import Image from "next/image";
 import Logo from "../../public/Logo.png"

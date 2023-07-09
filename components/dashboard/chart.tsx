@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {Box} from '../styles/box';
-import Chart, {Props} from 'react-apexcharts';
+import Chart from 'react-apexcharts';
 import { useTheme } from '@nextui-org/react';
 
 interface usetage {

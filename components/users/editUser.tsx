@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react'
-import { Modal, Button, Text, Input, Row, Checkbox, Grid, Container, Col, Card, Spacer } from "@nextui-org/react";
+import { Modal, Button, Input, Row, Container, Col, Spacer } from "@nextui-org/react";
 import { IconButton } from '@/app/(admin)/admin/userlist/table.styled';
-import { DeleteIcon } from '../icons/table/delete';
 import { EditIcon } from '../icons/table/edit';
 import Swal from 'sweetalert2';
 import axios from 'axios';

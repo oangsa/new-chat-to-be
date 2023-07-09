@@ -1,8 +1,6 @@
 import {Card, Text} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
-import {Box} from '../styles/box';
 import {Flex} from '../styles/flex';
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 export const CardBalance3 = () => {
     const [data, setData] = useState({

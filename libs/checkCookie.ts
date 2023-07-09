@@ -1,6 +1,5 @@
-import { CookieValueTypes, getCookie } from "cookies-next"
+import { getCookie } from "cookies-next"
 import jwtDecode from "jwt-decode"
-import { cookies } from 'next/headers'
 
 export default function checkCookie() {
 

@@ -1,7 +1,5 @@
 "use server"
 
-import { getCookie } from "cookies-next"
-import jwtDecode from "jwt-decode"
 import { cookies } from 'next/headers'
 
 export default async function logout() {

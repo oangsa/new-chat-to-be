@@ -1,4 +1,3 @@
-import { CookieValueTypes } from "cookies-next";
 import axios from 'axios'
 
 export default async function loginHandler(username: string, password: string) {

@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import {Text, Link} from '@nextui-org/react';
+import {Text} from '@nextui-org/react';
 import {Box} from '../styles/box';
-import dynamic from 'next/dynamic';
 import {Flex} from '../styles/flex';
-import NextLink from 'next/link';
 import { UsetageCard } from './card1';
 import { GreetCard } from './card2';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context';
-import { CookieValueTypes, getCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import getDataByCookie from '@/libs/getDataByCookie';
 // import {CardAgents} from './card-agents';
 // import {CardTransactions} from './card-transactions';
 
 
-export const Content = () => {
-   
+export const Content = () => { 
    const router: AppRouterInstance = useRouter()
    const [data, setData] = useState<any>()
-   const [isDoneLoading, setIsDoneLoading] = useState<boolean>(false)
-   const [isCookie, setIsCookie] = useState<boolean>(false)
 
    const getD = async () => {
       const res = await getDataByCookie()

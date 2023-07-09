@@ -1,7 +1,6 @@
 import React from 'react';
 import {useLockedBody} from '../hooks/useBodyLock';
 import {NavbarWrapper} from '../navbar/navbar';
-import {SidebarWrapper} from '../sideBar/sidebar';
 import {SidebarContext} from './layout-context';
 import {WrapperLayout} from './layout.styles';
 
@@ -25,7 +24,6 @@ export const Layout = ({children}: Props) => {
          }}
       >
          <WrapperLayout>
-            <SidebarWrapper />
             <NavbarWrapper>{children}</NavbarWrapper>
          </WrapperLayout>
       </SidebarContext.Provider>

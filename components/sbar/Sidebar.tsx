@@ -1,3 +1,4 @@
+"use client"
 import getCurrentUser from '@/libs/actions/getCurrentUser';
 
 import MobileFooter from './MobileFooter';

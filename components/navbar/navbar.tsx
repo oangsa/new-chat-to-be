@@ -1,4 +1,4 @@
-
+"use client"
 import {Button, Input, Link, Navbar, Text} from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import {Box} from '../styles/box';

@@ -34,7 +34,7 @@ export const RecentUse = () => {
 
                             console.log(url)
                             return (
-                            <Flex css={{gap: '$6'}} align={'center'} justify="between">
+                            <Flex key={item.studentId} css={{gap: '$6'}} align={'center'} justify="between">
                                 <Avatar size="lg" pointer src={url} bordered color="gradient" stacked />
                                 <Text span size={'$xs'} weight={'semibold'}>
                                     {item.name} {item.surname}

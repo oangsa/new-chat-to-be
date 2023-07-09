@@ -6,7 +6,7 @@ import { getJwtSecretKey } from '../../../libs/auth'
 import { setCookie } from 'cookies-next'
 import prisma from '../../../libs/prismadb'
 import { NextResponse, NextRequest } from 'next/server'
-export async function POST(request: NextRequest, response: NextResponse, req: NextApiRequest, res: NextApiResponse) {
+export async function POST(request: NextRequest, response: NextResponse) {
     const re = await request.json()
     const username: string = re.data.username
     const password: string = re.data.password
@@ -41,8 +41,6 @@ export async function POST(request: NextRequest, response: NextResponse, req: Ne
         //     value: token,
         //     httpOnly: false,
         // })
-
-        setCookie('key', 'value', { req, res })
         
         console.log("done")
         return new NextResponse('Success', {

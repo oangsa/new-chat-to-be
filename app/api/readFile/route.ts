@@ -4,7 +4,7 @@ import fs from 'fs';
 import { NextResponse } from 'next/server';
 import prisma from '../../../libs/prismadb'
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
     
     const jsonDirectory = path.join(process.cwd(), '');
     const data: string = fs.readFileSync(jsonDirectory + '/Data.json', 'utf8')

@@ -89,9 +89,6 @@ export default function SidebarWrapper() {
                         href="/admin/dashboard"
                      />
                   </SidebarMenu>}
-
-                  
-
                   <SidebarMenu title="อัพเดต">
                      <ChangeLog/>
                      {/* <SidebarItem

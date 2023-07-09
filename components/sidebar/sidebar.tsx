@@ -15,7 +15,7 @@ import Logo from "../../public/Logo.png"
 import checkCookie from '@/libs/checkCookie';
 import ChangeLog from './changeLog';
 
-export const SidebarWrapper = () => {
+export default function SidebarWrapper() {
    const router = useRouter();
    const pathname = usePathname();
    const {collapsed, setCollapsed} = useSidebarContext();

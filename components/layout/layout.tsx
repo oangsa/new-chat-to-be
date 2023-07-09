@@ -1,7 +1,7 @@
 import React from 'react';
 import {useLockedBody} from '@/components/hooks/useBodyLock';
 import {NavbarWrapper} from '@/components/navbar/navbar';
-import {SidebarWrapper} from '@/components/sideBar/sidebar';
+import SidebarWrapper from '@/components/sideBar/sidebar';
 import {SidebarContext} from './layout-context';
 import {WrapperLayout} from './layout.styles';
 

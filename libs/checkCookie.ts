@@ -1,15 +1,15 @@
-"use server"
-
-import { getCookie } from "cookies-next"
+import { CookieValueTypes, getCookie } from "cookies-next"
 import jwtDecode from "jwt-decode"
 import { cookies } from 'next/headers'
 
-export default async function checkCookie() {
+export default function checkCookie() {
 
-    const cookie: string | undefined = cookies().get("user-token")?.value
-
+    const cookie: any = getCookie("user-token")  
+    
     const token: any = cookie === undefined ? undefined : jwtDecode(cookie, {header: true})
 
+    console.log(token)
+    
     return token
 
  }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Box} from '../styles/box';
 import {Sidebar} from './sidebar.styles';
 import {Avatar, Tooltip} from '@nextui-org/react';
@@ -17,12 +17,24 @@ import {ChangeLogIcon} from '../icons/sidebar/changelog-icon';
 import {useRouter, usePathname} from 'next/navigation';
 import Image from "next/image";
 import Logo from "../../public/Logo.png"
-import { ChatIcon } from '../icons/sidebar/chat-icon';
+import checkCookie from '@/libs/checkCookie';
 
 export const SidebarWrapper = () => {
    const router = useRouter();
    const pathname = usePathname();
    const {collapsed, setCollapsed} = useSidebarContext();
+   const [isAdmin, setIsAdmin] = useState<boolean>(false)
+
+   function checkIsDev() {
+      const raw = checkCookie()
+      if (raw === undefined) return
+      return setIsAdmin(raw?.isAdmin === true ? true : false)
+
+   }
+
+   useEffect(() => {
+      checkIsDev()
+   }, [])
 
    return (
       <Box
@@ -46,13 +58,28 @@ export const SidebarWrapper = () => {
                css={{height: '100%'}}
             >
                <Sidebar.Body className="body sidebar">
-                  <SidebarItem
-                     title="หน้าหลัก"
-                     icon={<HomeIcon />}
-                     isActive={pathname === '/'}
-                     href="/"
-                  />
-                  <SidebarMenu title="แอดมิน">
+                  <SidebarMenu title="ทั่วไป">
+                     <SidebarItem
+                        title="หน้าหลัก"
+                        icon={<HomeIcon />}
+                        isActive={pathname === '/'}
+                        href="/"
+                     />
+                     <SidebarItem
+                        isActive={pathname === '/setting'}
+                        title="ตั้งค่า"
+                        icon={<SettingsIcon />}
+                        href='/setting'
+                     />
+                     {/* <SidebarItem
+                        isActive={pathname === '/chat'}
+                        title="แชท"
+                        icon={<ChatIcon />}
+                        href='/chat'
+                     /> */}
+                  </SidebarMenu>
+                  
+                  {isAdmin && <SidebarMenu title="แอดมิน">
                      <SidebarItem
                         isActive={pathname === '/admin/userlist'}
                         title="รายชื่อนักเรียน"
@@ -65,20 +92,9 @@ export const SidebarWrapper = () => {
                         icon={<DashboardIcon />}
                         href="/admin/dashboard"
                      />
-                  </SidebarMenu>
+                  </SidebarMenu>}
 
-                  <SidebarMenu title="ทั่วไป">
-                     <SidebarItem
-                        isActive={pathname === '/chats'}
-                        title="แชท"
-                        icon={<ChatIcon />}
-                     />
-                     <SidebarItem
-                        isActive={pathname === '/setting'}
-                        title="ตั้งค่า"
-                        icon={<SettingsIcon />}
-                     />
-                  </SidebarMenu>
+                  
 
                   <SidebarMenu title="อัพเดต">
                      <SidebarItem

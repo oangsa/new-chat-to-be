@@ -3,6 +3,7 @@ import React from 'react';
 import {DarkModeSwitch} from './darkmodeswitch';
 import { usePathname, useRouter } from 'next/navigation';
 import logout from '@/libs/logoutHandler';
+import { deleteCookie } from 'cookies-next';
 
 interface props {
    image: string,
@@ -17,8 +18,8 @@ export const UserDropdown = ({image, name}: props) => {
    if ( image === 'url' || image === '' ) url = 'https://i.pravatar.cc/150?u=a042581f4e29026704d'
 
    async function logoutClicked() {
-      logout()
-      router.refresh()
+      deleteCookie("user-token")
+      setTimeout(() => window.location.reload(), 1000)
       return
    }
 

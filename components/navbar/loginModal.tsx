@@ -1,9 +1,9 @@
 "use client"
 import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { hasCookie } from "cookies-next"
+import { hasCookie, setCookie } from "cookies-next"
 import loginHandler from '@/libs/loginHandler'
-import { Button, Card, Col, Container, FormElement, Input, Modal, Row, Spacer, Text } from '@nextui-org/react';
+import { Button, Card, Col, Container, FormElement, Input, Loading, Modal, Row, Spacer, Text } from '@nextui-org/react';
 import { IconButton } from '@/app/(admin)/admin/userlist/table.styled'
 import Swal from 'sweetalert2'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
@@ -16,7 +16,8 @@ export default function LOginModal() {
       password: ''
   })
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const submit = async () => {
 
@@ -30,11 +31,16 @@ export default function LOginModal() {
         timer: 3000,
         timerProgressBar: true
     })
-
-    if ((await loginHandler(data.username, data.password)) !== 200) return Toast.fire({ icon: 'error', title: 'Failed!' })
+    setIsClicked(true)
+    router.refresh()
+    if ((await loginHandler(data.username, data.password)) !== "Success") {
+      setIsClicked(false)
+      router.refresh()
+      setVisible(false);
+      return Toast.fire({ icon: 'error', title: 'Failed!' })
+    }
 
     setVisible(false);
-
     setData({
         username: '',
         password: ''
@@ -42,7 +48,7 @@ export default function LOginModal() {
 
     Toast.fire({ icon: 'success', title: 'Authenticated' })
 
-    return setTimeout(() => router.refresh(), 3050)
+    return setTimeout(() => window.location.reload(), 3010)
 
   }
 
@@ -78,12 +84,20 @@ export default function LOginModal() {
                 </Container>
             </Modal.Body>
             <Modal.Footer>
-            <Button auto flat color="error" onPress={closeHandler}>
+            {
+              isClicked === false && 
+              <Button auto flat color="error" onPress={closeHandler}>
                 ปิด
-            </Button>
-            <Button auto onPress={submit}>
-                ลงชื่อเข้าใช้
-            </Button>
+              </Button>
+            }
+            {isClicked === true ? 
+              <Button auto disabled>
+                <Loading type="spinner" color="currentColor" size="sm" />
+              </Button> :
+              <Button auto onPress={submit}>
+                  ลงชื่อเข้าใช้
+              </Button>
+            }
             </Modal.Footer>
         </Modal>
       </div>

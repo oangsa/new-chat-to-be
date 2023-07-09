@@ -1,7 +1,13 @@
-import React from 'react'
+import EmptyState from '@/components/EmptyState';
+import getUsers from "@/libs/actions/getUsers";
+import UserList from "./components/UserList";
 
-export default function Chat() {
+const People = async () => {
+  const users = await getUsers();
+
   return (
-    <div>Chat</div>
-  )
+    <UserList items={users} />
+   );
 }
+ 
+export default People;

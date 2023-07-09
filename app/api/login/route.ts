@@ -3,13 +3,13 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { SignJWT } from 'jose'
 import { nanoid } from 'nanoid'
 import { getJwtSecretKey } from '../../../libs/auth'
+import { setCookie } from 'cookies-next'
 import prisma from '../../../libs/prismadb'
 import { NextResponse, NextRequest } from 'next/server'
-import { cookies } from 'next/headers'
-export async function POST(request: NextRequest) {
-    const req = await request.json()
-    const username: string = req.data.username
-    const password: string = req.data.password
+export async function POST(request: NextRequest, response: NextResponse, req: NextApiRequest, res: NextApiResponse) {
+    const re = await request.json()
+    const username: string = re.data.username
+    const password: string = re.data.password
 
     var isAdmin = false
 
@@ -36,17 +36,24 @@ export async function POST(request: NextRequest) {
             .setExpirationTime('30 days')
             .sign(new TextEncoder().encode(getJwtSecretKey()))
         
-        cookies().set({
-            name: 'user-token',
-            value: token,
-            httpOnly: true,
-        })
+        // cookies().set({
+        //     name: 'user-token',
+        //     value: token,
+        //     httpOnly: false,
+        // })
 
-        return new NextResponse("Success")
+        setCookie('key', 'value', { req, res })
+        
+        console.log("done")
+        return new NextResponse('Success', {
+            status: 200,
+            headers: {
+             'Set-Cookie': `user-token=${token}; Path=/`,
+            },
+           })
 
     } catch (err) {
         console.log(err)
         return new NextResponse("Unknown Error")
-        // return res.status(404).send({message: "Unknown Error"})
     }
 }

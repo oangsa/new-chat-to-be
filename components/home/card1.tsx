@@ -28,8 +28,8 @@ export const UsetageCard = (props:any) => {
         <Card css={{ mw: '375px', bg: '$blue600', borderRadius: '$xl', px: '$6', }} >
             <Card.Body css={{py: '$10'}}>
                 { props?.props === undefined && isCookie === false ? 
-                <Text span css={{color: 'black'}} size={'$2xl'}>
-                    กรุณาเข้าสู่ระบบ
+                <Text span css={{color: 'white'}} size={'$2xl'}>
+                    กรุณาลงชื่อเข้าใช้
                 </Text>
                 : ( isCookie === true && props?.props === undefined ) ? 
                     <Text span css={{color: 'black'}} size={'$lg'}>

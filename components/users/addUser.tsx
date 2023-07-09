@@ -6,22 +6,6 @@ import { EditIcon } from '../icons/table/edit';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-interface studentData {
-    id: string,
-    name: string,
-    surname: string,
-    studentId: number,
-    yearClass: number,
-    Class: number,
-    reason: string,
-    total: number,
-    oldMonth: number,
-    timestamps: Date,
-    username: string,
-    password: string,
-    image: string,
-}
-
 function AddUser() {
     const [visible, setVisible] = useState(false);
     const [data, setData] = useState<studentData>({

@@ -1,13 +1,15 @@
 import checkCookie from "@/libs/checkCookie";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from '../../../../libs/prismadb'
+import checkServerCookie from "@/libs/checkServerCookie";
 
 export async function POST(request: NextRequest) {
     const req = await request.json()
 
     const { name, surname, other, oldMonth } = req
-    const cookie = await checkCookie()
-    const msg = `message=\n>ระบบแจ้งเตือนศูนย์เพื่อนใจ<\n> มีผู้เข้าใช้\n> ชื่อ: ${name} ${surname}\n> เพราะ: ${other}\n> เวลา: ${`${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[0]}:${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[1]}`} น.`;
+    const cookie = await checkServerCookie()
+    console.log(cookie)
+    const msg = `message=\n<มีผู้เข้าใช้ศูนย์เพื่อนใจ>\nชื่อ: ${name} ${surname}\nเพราะ: ${other}\nเวลา: ${`${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[0]}:${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[1]}`} น.`;
     const oldData: any = await prisma.student.findFirst({
         where: {
             studentId: cookie.studentId

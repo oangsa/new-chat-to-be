@@ -18,6 +18,7 @@ import {useRouter, usePathname} from 'next/navigation';
 import Image from "next/image";
 import Logo from "../../public/Logo.png"
 import checkCookie from '@/libs/checkCookie';
+import ChangeLog from './changeLog';
 
 export const SidebarWrapper = () => {
    const router = useRouter();
@@ -97,11 +98,12 @@ export const SidebarWrapper = () => {
                   
 
                   <SidebarMenu title="อัพเดต">
-                     <SidebarItem
+                     <ChangeLog/>
+                     {/* <SidebarItem
                         isActive={pathname === '/changelog'}
                         title="Changelog"
                         icon={<ChangeLogIcon />}
-                     />
+                     /> */}
                   </SidebarMenu>
                </Sidebar.Body>
             </Flex>

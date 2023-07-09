@@ -40,7 +40,7 @@ export const NavbarWrapper = ({children}: Props) => {
 
    useEffect(() => {
       a()
-   })
+   }, [])
 
    return (
       <Box

@@ -90,7 +90,8 @@ export default function LOginModal() {
                 ปิด
               </Button>
             }
-            {isClicked === true ? 
+            {
+              isClicked === true ? 
               <Button auto disabled>
                 <Loading type="spinner" color="currentColor" size="sm" />
               </Button> :

@@ -29,7 +29,7 @@ export const GreetCard = (props:any) => {
             <Card.Body css={{py: '$10'}}>
             { props?.props === undefined && isCookie === false ? 
                 <Text span css={{color: 'black'}} size={'$2xl'}>
-                    กรุณาเข้าสู่ระบบ
+                    กรุณาลงชื่อเข้าใช้
                 </Text>
             : ( isCookie === true && props?.props === undefined ) ? 
                 <Text span css={{color: 'black'}} size={'$lg'}>

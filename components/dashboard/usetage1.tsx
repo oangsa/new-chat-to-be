@@ -6,7 +6,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { IconArrowDownRight } from '@tabler/icons-react';
 import { IconArrowUpLeft } from '@tabler/icons-react';
 
-export const CardBalance1 = () => {
+export const CardBalance1 = (props: any) => {
     const secondary = "#7828C8";;
     const secondarylight = '#f5fcff';
     const optionscolumnchart: any = {
@@ -43,31 +43,9 @@ export const CardBalance1 = () => {
         data: [25, 66, 20, 40, 12, 58, 20],
     },
     ];
-
-    const [data, setData] = useState({
-    curTotal: 0,
-    curDay:  0,
-    curMonth: 0,
-
-    oldDay: 0,
-    oldMonth: 0,
-    })
-
-    const [isDoneLoading, setIsDoneLoading] = useState<boolean>(false) 
-
-    const getD = async () => {
-        const res = await fetch("/api/usetage/getUsetage")
-        const data = await res.json()
-        await setData(data)
-        setIsDoneLoading(true)
-    }
-
-    useEffect(() => {
-        getD()
-    }, [])
     
-    const more = data.curDay === 0 ? 1 : data.oldDay
-    const less = data.curDay === 0 ? 1 : data.oldDay
+    const more = props.props.curDay === 0 ? 1 : props.props.oldDay
+    const less = props.props.curDay === 0 ? 1 : props.props.oldDay
     return (
         <Card css={{ mw: '375px', bg: '$blue600', borderRadius: '$xl', px: '$6', }} >
             <Card.Body css={{py: '$10'}}>
@@ -77,36 +55,28 @@ export const CardBalance1 = () => {
                             การเข้าใช้งานรายวัน
                         </Text>
                     </Flex>
+                </Flex>      
+                <Flex css={{gap: '$6', py: '$4'}} align={'center'}>
+                    <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="60px" />
                 </Flex>
-                { isDoneLoading === false? 
+                <Flex css={{gap: '$12'}} align={'center'}>
                     <Text span css={{color: 'white'}} size={'$lg'}>
-                        loading...
-                    </Text> 
-                    :
-                    <>
-                        <Flex css={{gap: '$6', py: '$4'}} align={'center'}>
-                            <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="60px" />
-                        </Flex>
-                        <Flex css={{gap: '$12'}} align={'center'}>
-                            <Text span css={{color: 'white'}} size={'$lg'}>
-                                เข้าใช้งาน {data.curDay} ครั้ง
-                            </Text>
-                            <Text span css={{color: '$green600'}} size={'$lg'}>
-                                { data.curDay > data.oldDay ?
-                                    <div className='flex items-center'>
-                                        <IconArrowUpLeft width={30} color="#39B69A" className='mr-2'/>
-                                        {(((data.curDay - data.oldDay) / more ) * 100).toFixed(2)}%
-                                    </div> 
-                                    :
-                                    <div className='flex items-center text-red-600'>
-                                        <IconArrowDownRight width={30} color="#FA896B" className='mr-2'/>
-                                        {(((data.oldDay - data.curDay) / less) * 100).toFixed(2)}%
-                                    </div>
-                                } 
-                            </Text>
-                        </Flex>
-                    </>
-                    }
+                        เข้าใช้งาน {props.props.curDay} ครั้ง
+                    </Text>
+                    <Text span css={{color: '$green600'}} size={'$lg'}>
+                        { props.props.curDay > props.props.oldDay ?
+                            <div className='flex items-center'>
+                                <IconArrowUpLeft width={30} color="#39B69A" className='mr-2'/>
+                                {(((props.props.curDay - props.props.oldDay) / more ) * 100).toFixed(2)}%
+                            </div> 
+                            :
+                            <div className='flex items-center text-red-600'>
+                                <IconArrowDownRight width={30} color="#FA896B" className='mr-2'/>
+                                {(((props.props.oldDay - props.props.curDay) / less) * 100).toFixed(2)}%
+                            </div>
+                        } 
+                    </Text>
+                </Flex>
             </Card.Body>
         </Card>
     );

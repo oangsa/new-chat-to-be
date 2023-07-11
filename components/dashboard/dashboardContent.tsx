@@ -37,7 +37,7 @@ export const Content = () => {
 
    React.useEffect(() => {
       getD();
-   }, [])
+   }, [getD])
 
    return (
       <Box css={{overflow: 'hidden', height: '100%'}}>
@@ -50,7 +50,7 @@ export const Content = () => {
                   <Flex css={{ 'gap': '$10', 'flexWrap': 'wrap', 'justifyContent': 'center', '@sm': { flexWrap: 'nowrap', }, }} direction={'row'} >
                   <CardBalance3 props={data} />
                   <CardBalance1 props={data} />
-                  <CardBalance2 props={data} />
+                  <CardBalance2 props={data}/>
                   </Flex>
                </Box>
                <Box>

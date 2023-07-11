@@ -76,13 +76,20 @@ function Registeration({name, surname, month}:leaveModal) {
                 if (reason === "") return await Toast.fire({ icon: 'error', title: 'Faild!'})
                 //62763
 
-                const res = await axios.post('/api/senddatahandler/send', {
-                    name: name,
-                    surname: surname,
-                    oldMonth: month,
-                    other: reason
+                const res = await fetch("/api/senddatahandler/send", {
+                    method: "POST",
+                    mode: "cors",
+                    cache: "no-cache",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        surname: surname,
+                        oldMonth: month,
+                        other: reason
+                    })
                 })
-
                 console.log(await res.status)
 
                 // if (res.data !== "Success") return await Toast.fire({ icon: 'error', title: 'Faild!'})

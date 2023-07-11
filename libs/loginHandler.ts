@@ -16,5 +16,5 @@ export default async function loginHandler(username: string, password: string) {
 
     console.log(await res.status)
     
-    return await res.json()
+    return await res.status
 }

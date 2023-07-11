@@ -32,7 +32,7 @@ export default function LOginModal() {
     })
     setIsClicked(true)
     router.refresh()
-    if ((await loginHandler(data.username, data.password)) !== "Success") {
+    if ((await loginHandler(data.username, data.password)) !== 200) {
       setIsClicked(false)
       router.refresh()
       setVisible(false);

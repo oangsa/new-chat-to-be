@@ -92,7 +92,7 @@ export default function AdminList() {
                                             <Col css={{d: 'flex'}}>
                                                 <Tooltip content="Edit user">
                                                     <EditUser studentId={item.studentId}></EditUser>
-                                                </Tooltip>
+                                                </Tool
                                             </Col>
                                             <Col css={{d: 'flex'}}>
                                                 <Tooltip content="Delete user" color="error">

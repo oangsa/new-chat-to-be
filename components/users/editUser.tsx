@@ -41,7 +41,7 @@ function EditUser(props: props) {
     };
 
     async function getUserById(sid: number) {
-        const res = await fetch(`/api/user/getuserbysid?sid=${sid}`)
+        const res = await fetch(`/api/user/getuserbysid?sid=${sid.toString()}`)
 
         setData(await res.json())
 

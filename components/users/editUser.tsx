@@ -98,9 +98,9 @@ function EditUser(props: props) {
 
     return (
         <div>
-            <div onClick={() => setVisible(true)}>
+            <IconButton onClick={() => setVisible(true)}>
                 <EditIcon size={20} fill="#979797" />
-            </div>
+            </IconButton>
             <Modal closeButton aria-labelledby="edit-modal" open={visible} onClose={closeHandler} >
                 <Modal.Body>
                     <div className="flex justify-between items-center mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">

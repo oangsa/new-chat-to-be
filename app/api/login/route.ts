@@ -5,8 +5,8 @@ import prisma from '@/libs/prismadb'
 import { NextResponse, NextRequest } from 'next/server'
 export async function POST(request: NextRequest) {
     const re = await request.json()
-    const username: string = re.data.username
-    const password: string = re.data.password
+    const username: string = re.username
+    const password: string = re.password
 
     var isAdmin = false
 

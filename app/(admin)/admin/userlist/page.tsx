@@ -90,9 +90,7 @@ export default function AdminList() {
                                     <Table.Cell>
                                         <Row justify="center" align="center" css={{'gap': '$2', '@md': {gap: 0}}} >
                                             <Col css={{d: 'flex'}}>
-                                                <Tooltip content="Edit user">
-                                                    <EditUser studentId={item.studentId}></EditUser>
-                                                </Tooltip>
+                                                <EditUser studentId={item.studentId}></EditUser>
                                             </Col>
                                             <Col css={{d: 'flex'}}>
                                                 <Tooltip content="Delete user" color="error">

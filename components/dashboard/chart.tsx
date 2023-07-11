@@ -9,7 +9,6 @@ interface usetage {
 }
 
 export const Steam = () => {
-   const [month, setMonth] = React.useState('1');
 
    const [use, setUse] = React.useState<usetage>({
       month: [],
@@ -28,10 +27,6 @@ export const Steam = () => {
    const {theme} = useTheme();
    const primary = "#0072F5";
    const secondary = "#7828C8";
-   
-   const handleChange = (event: any) => {
-      setMonth(event.target.value);
-   };
 
    const optionscolumnchart: any = {
       chart: {
@@ -98,7 +93,7 @@ export const Steam = () => {
    const seriescolumnchart: any[] = [
          {
             name: 'Month Use',
-            data: use.month,
+            data: [12,135, 345,57,89],
          },
          {
             name: 'All use',

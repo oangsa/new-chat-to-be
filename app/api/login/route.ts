@@ -1,12 +1,9 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { SignJWT } from 'jose'
 import { nanoid } from 'nanoid'
-import { getJwtSecretKey } from '../../../libs/auth'
-import { setCookie } from 'cookies-next'
-import prisma from '../../../libs/prismadb'
+import { getJwtSecretKey } from '@/libs/auth'
+import prisma from '@/libs/prismadb'
 import { NextResponse, NextRequest } from 'next/server'
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
     const re = await request.json()
     const username: string = re.data.username
     const password: string = re.data.password

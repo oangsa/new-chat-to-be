@@ -16,7 +16,8 @@ export async function POST(request: NextRequest) {
     const msg = `message=\n<มีผู้เข้าใช้ศูนย์เพื่อนใจ>\nชื่อ: ${name} ${surname}\nเพราะ: ${other}\nเวลา: ${`${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[0]}:${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[1]}`} น.`;
     const oldData: any = await prisma.student.findFirst({
         where: {
-            studentId: token.studentId
+            surname: surname,
+            name: name
         }
     })
 

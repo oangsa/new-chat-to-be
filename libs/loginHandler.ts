@@ -1,8 +1,17 @@
 import axios from 'axios'
 
 export default async function loginHandler(username: string, password: string) {
-    const res = await axios.post("/api/login", {
-        data: {username, password}
+    const res = await fetch("/api/login", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
     })
-    return await res.data
+    return await res.json()
 }

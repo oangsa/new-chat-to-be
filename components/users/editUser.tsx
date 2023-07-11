@@ -98,8 +98,8 @@ function EditUser(props: props) {
 
     return (
         <div>
-            <IconButton onClick={handler}>
-                <EditIcon onClick={handler} size={20} fill="#979797" />
+            <IconButton onPress={() => console.log("Clicked")}>
+                <EditIcon size={20} fill="#979797" />
             </IconButton>
             <Modal closeButton aria-labelledby="edit-modal" open={visible} onClose={closeHandler} >
                 <Modal.Body>

@@ -11,7 +11,7 @@ interface props {
 }
 
 function EditUser(props: props) {
-    const [visible, setVisible] = useState<boolean>(false);
+    const [visible, setVisible] = useState<>(false);
     const [data, setData] = useState<studentData>({
         id: "",
         name: "",
@@ -99,7 +99,7 @@ function EditUser(props: props) {
     return (
         <div>
             <IconButton onClick={handler}>
-                <EditIcon onClick={handler} size={20} fill="#979797" />
+                <EditIcon size={20} fill="#979797" />
             </IconButton>
             <Modal closeButton aria-labelledby="edit-modal" open={visible} onClose={closeHandler} >
                 <Modal.Body>

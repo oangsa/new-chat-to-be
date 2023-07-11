@@ -92,9 +92,9 @@ function EditUser(props: props) {
           })
     }
 
-    useEffect(() => {
-        getUserById(props.studentId)
-    }, [])
+    // useEffect(() => {
+    //     getUserById(props.studentId)
+    // }, [])
 
     return (
         <div>

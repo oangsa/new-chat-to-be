@@ -9,10 +9,7 @@ export async function POST(request: NextRequest) {
     const req = await request.json()
 
     const { name, surname, other, oldMonth } = req
-    const cookie: any = cookies().get('user-token')?.value
-    
-    const token: any = cookie === undefined ? undefined : jwtDecode(cookie, {header: true})
-    console.log(cookie)
+
     const msg = `message=\n<มีผู้เข้าใช้ศูนย์เพื่อนใจ>\nชื่อ: ${name} ${surname}\nเพราะ: ${other}\nเวลา: ${`${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[0]}:${new Date().toLocaleString("th-TH", {timeZone: "Asia/Bangkok"}).split(" ")[1].split(":")[1]}`} น.`;
     const oldData: any = await prisma.student.findFirst({
         where: {
@@ -21,11 +18,7 @@ export async function POST(request: NextRequest) {
         }
     })
 
-    console.log(oldData)
-
     const oldCount: any = await prisma.count.findFirst()
-
-    console.log(oldCount)
 
     const updateStudent = await prisma.student.update({
         where: {

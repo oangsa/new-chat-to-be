@@ -93,7 +93,7 @@ export const Steam = () => {
    const seriescolumnchart: any[] = [
          {
             name: 'Month Use',
-            data: [12,135, 345,57,89],
+            data:  use.month,
          },
          {
             name: 'All use',

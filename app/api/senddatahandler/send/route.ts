@@ -21,7 +21,11 @@ export async function POST(request: NextRequest) {
         }
     })
 
+    console.log(oldData)
+
     const oldCount: any = await prisma.count.findFirst()
+
+    console.log(oldCount)
 
     const updateStudent = await prisma.student.update({
         where: {
@@ -29,8 +33,8 @@ export async function POST(request: NextRequest) {
         },
         data: {
             reason: other,
-            total: parseInt(oldData.total) + 1,
-            oldMonth: parseInt(oldData.oldMonth) + 1,
+            total: oldData.total + 1,
+            oldMonth: oldData.oldMonth + 1,
             timestamps: new Date()
         }
     })
@@ -44,7 +48,8 @@ export async function POST(request: NextRequest) {
             curTotal: oldCount.curTotal + 1,
         }
     })
-
+    console.log(updateCount)
+    console.log(updateStudent)
     const response = await fetch("https://notify-api.line.me/api/notify", {
         mode: "cors",
         method: 'POST',
